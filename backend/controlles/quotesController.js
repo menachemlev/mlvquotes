@@ -1,4 +1,4 @@
-const Quotes = require('../models/QuotesModel');
+const Quotes = require('../models/quotesModel');
 const User = require('./../models/userModel');
 
 const catchAsync = require('./../util/catchAsync');
