@@ -29,7 +29,7 @@
 }
 @media screen and (max-width: 64em) {
   .header {
-    height: 20vh;
+    height: 8vh;
   }
   .link {
     font-size: 1em;
