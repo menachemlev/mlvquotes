@@ -19,18 +19,9 @@ import AddQuote from "./pages/AddQuote";
 import Profile from "./components/Profile/Profile";
 
 function App() {
-  const [wideScreen, setWideScreen] = useState(
-    window.innerWidth > window.innerHeight
-  );
-  useEffect(() => {
-    setInterval(() => {
-      setWideScreen(window.innerWidth > window.innerHeight);
-    }, 1000);
-  }, []);
-
   return (
     <>
-      {wideScreen && (
+      {!isItMobile() && (
         <img
           src={
             Math.random() >= 0.66
@@ -49,7 +40,7 @@ function App() {
           alt=""
         />
       )}
-      <div className="app" style={{ width: !wideScreen && "100%" }}>
+      <div className="app" style={{ width: isItMobile() && "100%" }}>
         <Header />
         <Switch>
           <Route path="/" exact>
