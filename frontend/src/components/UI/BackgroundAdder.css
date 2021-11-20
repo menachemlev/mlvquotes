@@ -6,4 +6,5 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  border-top: 3px solid var(--color-primary);
 }
