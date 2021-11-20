@@ -14,10 +14,19 @@
   );
   margin: 1em;
   transition: 0.2s;
+  position: relative;
 }
 .quotePost:hover {
   box-shadow: 0 0 1em var(--color-primary);
-  transform: perspective(1500px) rotateY(10deg);
+}
+.quotePost:nth-child(odd):hover {
+  transform: perspective(1500px) rotateY(15deg);
+}
+.quotePost:nth-child(even):hover {
+  transform: perspective(1500px) rotateY(-15deg);
+}
+.quotePost * {
+  transform-style: preserve-3d;
 }
 .quotePost q {
   font-size: 1.2em;

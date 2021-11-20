@@ -10,7 +10,6 @@ import QuotesContext from "../Auth/QuotesContext";
 export default function AddQuote() {
   const ctx = useContext(Auth);
   const quotesCtx = useContext(QuotesContext);
-  console.log(ctx.username);
 
   const titleRef = useRef(null);
   const quoteRef = useRef(null);

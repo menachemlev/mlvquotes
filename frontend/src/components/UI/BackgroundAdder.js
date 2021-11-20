@@ -1,6 +1,5 @@
 import "./BackgroundAdder.css";
 export default function BackgroundAdder(props) {
-  console.log("hello");
   return (
     <div
       className="background-adder"
