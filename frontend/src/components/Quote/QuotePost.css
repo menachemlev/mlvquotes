@@ -4,6 +4,7 @@
   height: 36vh;
   box-sizing: border-box;
   padding: 2em;
+  animation: fadeInComponent 1s forwards;
   border-radius: 0.5em;
   border: var(--color-primary) 3px solid;
   color: #333;
