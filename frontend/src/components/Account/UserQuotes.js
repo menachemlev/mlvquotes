@@ -46,7 +46,7 @@ export default function UserQoutes(props) {
 
   return (
     <div className="home__quotes">
-      {quotes.map((quote) => {
+      {quotes.map((quote, index) => {
         return (
           <QuotePost
             key={quote._id}
@@ -58,6 +58,7 @@ export default function UserQoutes(props) {
             dislikes={quote.dislikes}
             comments={quote.comments}
             onDelete={handleOnDelete}
+            index={index}
           />
         );
       })}

@@ -30,7 +30,7 @@ export default function Profile(props) {
     <>
       <h1 className="pageTitle">{params.username} quotes</h1>
       <div className="home__quotes">
-        {quotes.map((quote) => {
+        {quotes.map((quote, index) => {
           return (
             <QuotePost
               key={quote._id}
@@ -42,6 +42,7 @@ export default function Profile(props) {
               dislikes={quote.dislikes}
               comments={quote.comments}
               onDelete={null}
+              index={index}
             />
           );
         })}

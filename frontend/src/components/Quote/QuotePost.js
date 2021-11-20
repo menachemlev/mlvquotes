@@ -20,6 +20,7 @@ export default function QuotePost({
   dislikes,
   comments,
   onDelete,
+  index,
 }) {
   const quotesCtx = useContext(QuotesContext);
   const ctx = useContext(Auth);
@@ -100,7 +101,9 @@ export default function QuotePost({
   return (
     <blockquote
       className="quotePost"
-      style={{ height: isItMobile() && "30vh" }}
+      style={{
+        height: isItMobile() && "30vh",
+      }}
     >
       <q>{quoteCut(text)}</q>
       <figcaption>

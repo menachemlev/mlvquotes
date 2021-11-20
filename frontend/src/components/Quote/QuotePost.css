@@ -4,8 +4,8 @@
   height: 36vh;
   box-sizing: border-box;
   padding: 2em;
-  animation: fadeInComponent 1s forwards;
   border-radius: 0.5em;
+  animation: fadeInComponent 1s;
   border: var(--color-primary) 3px solid;
   color: #333;
   background: linear-gradient(
@@ -61,12 +61,24 @@
   display: inline-block;
 }
 .quote__react-button:hover {
-  transform: translateY(-10%);
+  transform: scale(1.1, 1.1);
 }
 
 @media screen and (max-width: 64em) {
   .quotePost {
     flex-basis: 99%;
     height: 55vh;
+  }
+  .quote__react-button:hover {
+    transform: scale(1, 1);
+  }
+  .quotePost:hover {
+    box-shadow: 0 0 1em var(--color-primary);
+  }
+  .quotePost:nth-child(odd):hover {
+    transform: none;
+  }
+  .quotePost:nth-child(even):hover {
+    transform: none;
   }
 }

@@ -12,7 +12,7 @@ function Home(props) {
   return (
     <div className="home">
       <div className="home__quotes">
-        {quotesContext.quotes.map((quote) => {
+        {quotesContext.quotes.map((quote, index) => {
           return (
             <QuotePost
               key={quote._id}
@@ -24,6 +24,7 @@ function Home(props) {
               dislikes={quote.dislikes}
               comments={quote.comments}
               onDelete={null}
+              index={index}
             />
           );
         })}
