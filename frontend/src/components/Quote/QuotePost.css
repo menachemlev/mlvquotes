@@ -17,6 +17,7 @@
 }
 .quotePost:hover {
   box-shadow: 0 0 1em var(--color-primary);
+  transform: perspective(1500px) rotateY(10deg);
 }
 .quotePost q {
   font-size: 1.2em;
