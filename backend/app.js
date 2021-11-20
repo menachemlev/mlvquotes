@@ -45,6 +45,7 @@ app.options(
     credentials: true,
   })
 );
+app.use('/api/photos', express.static(path.join(__dirname, './photos')));
 app.use(express.static(path.join(__dirname, './../frontend/build')));
 
 //Route handler

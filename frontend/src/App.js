@@ -4,10 +4,6 @@ import { Route, Switch } from "react-router-dom";
 
 import { isItMobile } from "./generalFunctions";
 
-import block from "./block.jpg";
-import block2 from "./block2.jpg";
-import block3 from "./block3.jpg";
-
 import Home from "./pages/Home";
 import Header from "./components/Header/Header";
 
@@ -18,6 +14,8 @@ import NotFound from "./pages/NotFound";
 import AddQuote from "./pages/AddQuote";
 import Profile from "./components/Profile/Profile";
 
+import BackgroundAdder from "./components/UI/BackgroundAdder";
+
 function App() {
   return (
     <>
@@ -25,10 +23,10 @@ function App() {
         <img
           src={
             Math.random() >= 0.66
-              ? block
+              ? "api/photos/block.jpg"
               : Math.random() >= 0.5
-              ? block2
-              : block3
+              ? "api/photos/block2.jpg"
+              : `api/photos/block3.jpg`
           }
           style={{
             height: "100%",
@@ -36,15 +34,19 @@ function App() {
             position: "fixed",
             top: "0",
             right: "0",
+            borderLeft: "3px solid var(--color-primary-light)",
           }}
           alt="block"
         />
       )}
       <div className="app" style={{ width: isItMobile() && "100%" }}>
         <Header />
+
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <BackgroundAdder>
+              <Home />
+            </BackgroundAdder>
           </Route>
           <Route path="/login">
             <Login />
@@ -56,10 +58,14 @@ function App() {
             <Quote />
           </Route>
           <Route path="/account">
-            <Account />
+            <BackgroundAdder>
+              <Account />
+            </BackgroundAdder>
           </Route>
           <Route path="/profile/:username">
-            <Profile />
+            <BackgroundAdder>
+              <Profile />
+            </BackgroundAdder>
           </Route>
           <Route path="/">
             <NotFound />

@@ -7,11 +7,16 @@
   border-radius: 0.5em;
   border: var(--color-primary) 3px solid;
   color: #333;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.8),
+    #ffffff,
+    rgba(255, 255, 255, 0.8)
+  );
   margin: 1em;
   transition: 0.2s;
 }
 .quotePost:hover {
-  box-shadow: 0 0 0.5em var(--color-primary);
+  box-shadow: 0 0 1em var(--color-primary);
 }
 .quotePost q {
   font-size: 1.2em;

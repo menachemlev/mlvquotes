@@ -1,0 +1,9 @@
+.background-adder {
+  margin-top: 1em;
+  width: 100%;
+  height: max-content;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
