@@ -37,7 +37,7 @@ function App() {
             top: "0",
             right: "0",
           }}
-          alt=""
+          alt="block"
         />
       )}
       <div className="app" style={{ width: isItMobile() && "100%" }}>
