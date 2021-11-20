@@ -5,8 +5,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 15vh;
+  height: 8vh;
   font-weight: bolder;
+  border-bottom: 3px solid var(--color-primary);
 }
 
 .link {
@@ -28,9 +29,6 @@
   background: var(--color-primary);
 }
 @media screen and (max-width: 64em) {
-  .header {
-    height: 8vh;
-  }
   .link {
     font-size: 1em;
   }
