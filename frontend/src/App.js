@@ -23,10 +23,10 @@ function App() {
         <img
           src={
             Math.random() >= 0.66
-              ? "api/photos/block.jpg"
+              ? "/api/photos/block.jpg"
               : Math.random() >= 0.5
-              ? "api/photos/block2.jpg"
-              : `api/photos/block3.jpg`
+              ? "/api/photos/block2.jpg"
+              : `/api/photos/block3.jpg`
           }
           style={{
             height: "100%",
