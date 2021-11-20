@@ -1,0 +1,14 @@
+.quote {
+}
+.quote__text {
+  font-size: 2em;
+  display: block;
+}
+.quote__title {
+  font-size: 1em;
+  font-style: oblique;
+}
+.quote__name {
+  font-size: 1em;
+  font-style: italic;
+}

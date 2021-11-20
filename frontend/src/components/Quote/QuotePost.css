@@ -1,0 +1,56 @@
+.quotePost {
+  display: inline-block;
+  flex-basis: 45%;
+  height: 36vh;
+  box-sizing: border-box;
+  padding: 2em;
+  border-radius: 0.5em;
+  border: var(--color-primary) 3px solid;
+  color: #333;
+  margin: 1em;
+  transition: 0.2s;
+}
+.quotePost:hover {
+  box-shadow: 0 0 0.5em var(--color-primary);
+}
+.quotePost q {
+  font-size: 1.2em;
+  line-height: 1.2;
+  display: inline-block;
+  margin-bottom: 3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 3.6em;
+}
+.quotePost b {
+  text-transform: capitalize;
+}
+.quotePost q::before {
+  font-size: 200%;
+}
+
+.quote-social {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quote-social__comments {
+  color: var(--color-primary);
+}
+
+.quote__react-button {
+  cursor: pointer;
+  transition: 0.2s;
+  display: inline-block;
+}
+.quote__react-button:hover {
+  transform: translateY(-10%);
+}
+
+@media screen and (max-width: 64em) {
+  .quotePost {
+    flex-basis: 99%;
+    height: 55vh;
+  }
+}

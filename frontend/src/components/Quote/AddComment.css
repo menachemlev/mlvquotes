@@ -1,0 +1,17 @@
+.add-comment-form {
+  margin-top: 1em;
+}
+.add-comment-form textarea {
+  padding: 0.5em;
+}
+.add-comment-form button {
+  background-color: var(--color-primary);
+  transition: 0.2s;
+  color: white;
+  padding: 0.7em 1em;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+.add-comment-form button:hover {
+  filter: brightness(0.8);
+}
