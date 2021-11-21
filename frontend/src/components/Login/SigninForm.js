@@ -11,7 +11,7 @@ function SigninForm(props) {
   const [emailInputChanged, setEmailInputChanged] = useState(false);
   const [passwordInputChanged, setPasswordInputChanged] = useState(false);
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(<></>);
 
   const email = useRef(null);
   const password = useRef(null);
@@ -33,13 +33,27 @@ function SigninForm(props) {
 
   const handleOnInputBlur = () => {
     //HANDLING DISPLAYING ERRORS
-    if (emailInputChanged && !emailValid)
-      setError((prev) => `${prev} ${emailNotValidMessage}`);
-    else setError((prev) => prev.replace(emailNotValidMessage, ""));
 
-    if (passwordInputChanged && !passwordValid)
-      setError((prev) => `${prev} ${passwordNotValidMessage}`);
-    else setError((prev) => prev.replace(passwordNotValidMessage, ""));
+    const emailError =
+      emailInputChanged && !emailValid ? emailNotValidMessage : "";
+    const passwordError =
+      passwordInputChanged && !passwordValid ? passwordNotValidMessage : "";
+    setError(
+      <>
+        {emailError && (
+          <>
+            {emailError}
+            <br />
+          </>
+        )}
+        {passwordError && (
+          <>
+            {passwordError}
+            <br />
+          </>
+        )}
+      </>
+    );
   };
 
   const handleFormSubmit = (e) => {
