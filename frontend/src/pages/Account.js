@@ -28,6 +28,7 @@ function Account(props) {
         body: JSON.stringify({
           email: ctx.email,
           password: ctx.password,
+          username: ctx.username,
         }),
         headers: {
           "Content-type": "Application/json",

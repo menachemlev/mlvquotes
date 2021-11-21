@@ -125,9 +125,13 @@ exports.deleteQuote = catchAsync(async (req, res, next) => {
   if (!quote) {
     return next(new AppError('Quote not found!', 404));
   }
+  if (quote.username !== req.body.username) {
+    return next(new AppError('You can not delete this quote!', 404));
+  }
   /* quote.active = false;
   await quote.save();
 */
+
   res.status(203).json({
     status: 'success',
     data: null,
