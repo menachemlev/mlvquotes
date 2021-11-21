@@ -55,7 +55,7 @@ app.use('/api/v0/users/signup', limiter);
 
 app.use('/api/v0/users/', userRouter);
 app.use('/api/v0/quotes/', quotesRouter);
-//ERROR CONTROLL
+//ERROR CONTROLLER
 app.use('*', errorController);
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, './../frontend/build/index.html'))
