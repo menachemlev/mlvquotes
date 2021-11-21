@@ -45,6 +45,7 @@ export default function AddComment({ id }) {
         cols="30"
       ></textarea>
       <br />
+      <br />
       <button>Post comment</button>
     </form>
   );

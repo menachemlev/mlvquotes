@@ -23,7 +23,7 @@ exports.addQuote = catchAsync(async (req, res, next) => {
 });
 exports.getQuotes = catchAsync(async (req, res, next) => {
   let quotes = Quotes.find();
-  quotes.limit(req.query.results);
+  quotes.limit(+req.query.results);
   quotes = await quotes;
   if (!Array.isArray(quotes)) {
     return next(new AppError('Something went very wrong!', 500));

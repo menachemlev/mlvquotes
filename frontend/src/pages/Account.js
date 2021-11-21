@@ -67,7 +67,7 @@ function Account(props) {
           Logout
         </button>
         <button onClick={deleteAccount}>Delete</button>
-        {message}
+        <div style={{ color: "white" }}>{message}</div>
         <div style={{ color: "red" }}>{error}</div>
         <br />
         <br />

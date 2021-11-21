@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
 :root {
-  --color-primary: #628fd3;
-  --color-primary-light: #a8cfff;
-  --color-primary-dark: #1d2964;
+  --color-primary: #f7941e;
+  --color-primary-light: #fca438;
+  --color-primary-dark: #e98203;
 }
 *,
 *::after,
@@ -41,7 +42,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: green;
+  background: var(--color-primary-dark);
 }
 
 .fadeIn {

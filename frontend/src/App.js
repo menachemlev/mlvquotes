@@ -34,7 +34,6 @@ function App() {
             position: "fixed",
             top: "0",
             right: "0",
-            borderLeft: "3px solid var(--color-primary-light)",
           }}
           alt="block"
         />

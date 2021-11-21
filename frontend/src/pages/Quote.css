@@ -1,6 +1,9 @@
 .quote {
   border-top: 3px solid var(--color-primary);
-  padding-top: 1.5em;
+  margin-top: 1em;
+}
+.quote > * {
+  margin: 2em 1em;
 }
 .quote__text {
   font-size: 2em;
