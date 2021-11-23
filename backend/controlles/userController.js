@@ -1,4 +1,5 @@
 const User = require('./../models/userModel');
+const Quotes = require('../models/quotesModel');
 const jwt = require('jsonwebtoken');
 
 const catchAsync = require('./../util/catchAsync');
@@ -107,8 +108,22 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   }
 
   user.active = false;
-  website.email = `deleted - ${website.email}`;
+  await user.save({ validatorBeforeSave: false });
 
+  const userQuotes = await Quotes.aggregate([
+    {
+      $match: {
+        email,
+      },
+    },
+  ]);
+  if (!Array.isArray(userQuotes)) {
+    return next(new AppError('Something went very wrong!', 500));
+  }
+  userQuotes.forEach((quote) => {
+    quote.email == `${quote.username} -- deleted`;
+  });
+  await userQuotes.save({ validatorBeforeSave: false });
   await user.save({ validatorBeforeSave: false });
 
   res.status(203).json({
