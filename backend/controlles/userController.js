@@ -109,7 +109,6 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 
   user.active = false;
   await user.save({ validatorBeforeSave: false });
-
   const userQuotes = await Quotes.aggregate([
     {
       $match: {
@@ -124,7 +123,6 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
     quote.email == `${quote.username} -- deleted`;
   });
   await userQuotes.save({ validatorBeforeSave: false });
-  await user.save({ validatorBeforeSave: false });
 
   res.status(203).json({
     status: 'success',
