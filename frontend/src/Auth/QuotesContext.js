@@ -17,12 +17,15 @@ export const QuotesContextProvider = (props) => {
 
   useEffect(() => {
     const fetchQuotes = () => {
+      const accountsQuery =
+        localStorage && localStorage.getItem("accountsFollowed")
+          ? `&accounts=${JSON.parse(
+              localStorage.getItem("accountsFollowed")
+            ).join(",")}`
+          : ``;
+
       fetch(
-        `${
-          ctx.fetchProviderURL
-        }/quotes?results=${resultsAmount}&accounts=${JSON.parse(
-          localStorage.getItem("accountsFollowed") || []
-        ).join(",")}`
+        `${ctx.fetchProviderURL}/quotes?results=${resultsAmount}${accountsQuery}`
       )
         .then((res) => {
           if (!res) throw new Error("Something went wrong...");
