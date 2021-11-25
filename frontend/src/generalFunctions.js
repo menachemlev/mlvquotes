@@ -13,3 +13,16 @@ export function isItMobile() {
   })(navigator.userAgent || navigator.vendor || window.opera);
   return check;
 }
+
+export function sortQuote(quoteA, quoteB) {
+  if (!localStorage) return 0;
+  const accountsFollowed = JSON.parse(localStorage.getItem("accountsFollowed"));
+  if (accountsFollowed.length === 0) return 0;
+  const indexA = accountsFollowed.indexOf(quoteA.username);
+  const indexB = accountsFollowed.indexOf(quoteB.username);
+  if (indexA === -1 && indexB === -1) return 0;
+  if (indexA === -1 && indexB !== -1) return 1;
+  if (indexB === -1 && indexA !== -1) return -1;
+  if (indexA !== -1 && indexB !== -1 && indexB < indexA) return 1;
+  if (indexA !== -1 && indexB !== -1 && indexB >= indexA) return -1;
+}

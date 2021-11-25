@@ -7,12 +7,13 @@ import Auth from "../Auth/Auth";
 import "./Home.css";
 import QuotesContext from "../Auth/QuotesContext";
 import QuotePost from "../components/Quote/QuotePost";
+import { sortQuote } from "../generalFunctions";
 function Home(props) {
   const quotesContext = useContext(QuotesContext);
   return (
     <div className="home">
       <div className="home__quotes">
-        {quotesContext.quotes.map((quote, index) => {
+        {quotesContext.quotes.sort(sortQuote).map((quote, index) => {
           return (
             <QuotePost
               key={quote._id}

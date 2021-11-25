@@ -8,6 +8,12 @@ export default function Profile(props) {
   const params = useParams();
   const authCtx = useContext(Auth);
   const [quotes, setQuotes] = useState([]);
+  const [isAccountFollowed, setIsAccountFollowed] = useState(
+    (JSON.parse(localStorage.getItem("accountsFollowed")) || []).includes(
+      params.username
+    )
+  );
+
   useEffect(() => {
     const fetchUserQuotes = () => {
       fetch(
@@ -25,10 +31,49 @@ export default function Profile(props) {
     fetchUserQuotes();
     setInterval(fetchUserQuotes, 1000);
   }, []);
+
+  //ON USER FOLLOWING
+  const handleOnFollowUser = () => {
+    if (!localStorage) return;
+    const accountsFollowed = JSON.parse(
+      localStorage.getItem("accountsFollowed")
+    );
+    localStorage.setItem(
+      "accountsFollowed",
+      JSON.stringify([params.username, ...(accountsFollowed || [])])
+    );
+    setIsAccountFollowed(true);
+  };
+
+  const handleOnUnfollowUser = () => {
+    if (!localStorage) return;
+    const accountsFollowed = JSON.parse(
+      localStorage.getItem("accountsFollowed")
+    );
+    localStorage.setItem(
+      "accountsFollowed",
+      JSON.stringify(
+        (accountsFollowed || []).filter(
+          (account) => account !== params.username
+        )
+      )
+    );
+    setIsAccountFollowed(false);
+  };
   //SAME RENDERING AS ON HOMEPAGE
   return (
     <>
       <h1 className="pageTitle">{params.username} quotes</h1>
+      <center>
+        <b
+          style={{ color: "white", cursor: "pointer" }}
+          onClick={
+            isAccountFollowed ? handleOnUnfollowUser : handleOnFollowUser
+          }
+        >
+          {isAccountFollowed ? "⛔ Unfollow" : "✔ Follow"}
+        </b>
+      </center>
       <div className="home__quotes">
         {quotes.map((quote, index) => {
           return (
