@@ -106,8 +106,6 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   if (!user || !correct) {
     return next(new AppError('Incorrect email or passowrd!', 404));
   }
-
-  user.active = false;
   await user.save({ validatorBeforeSave: false });
   const userQuotes = await Quotes.aggregate([
     {
@@ -119,10 +117,10 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   if (!Array.isArray(userQuotes)) {
     return next(new AppError('Something went very wrong!', 500));
   }
-  userQuotes.forEach((quote) => {
-    quote.email == `${quote.username} -- deleted`;
+  userQuotes.forEach(async (quote) => {
+    await quote.remove();
   });
-  await userQuotes.save({ validatorBeforeSave: false });
+  await user.remove();
 
   res.status(203).json({
     status: 'success',
