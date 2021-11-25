@@ -17,7 +17,13 @@ export const QuotesContextProvider = (props) => {
 
   useEffect(() => {
     const fetchQuotes = () => {
-      fetch(`${ctx.fetchProviderURL}/quotes?results=${resultsAmount}`)
+      fetch(
+        `${
+          ctx.fetchProviderURL
+        }/quotes?results=${resultsAmount}&accounts=${JSON.parse(
+          localStorage.getItem("accountsFollowed") || []
+        ).join(",")}`
+      )
         .then((res) => {
           if (!res) throw new Error("Something went wrong...");
           return res.json();
