@@ -106,7 +106,6 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   if (!user || !correct) {
     return next(new AppError('Incorrect email or passowrd!', 404));
   }
-  await user.save({ validatorBeforeSave: false });
   const userQuotes = await Quotes.aggregate([
     {
       $match: {
