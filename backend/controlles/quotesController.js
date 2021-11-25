@@ -24,23 +24,30 @@ exports.addQuote = catchAsync(async (req, res, next) => {
 exports.getQuotes = catchAsync(async (req, res, next) => {
   let restOfQuotes = [],
     quotes = [];
-  if (req.query.accounts) {
-    quotes = Quotes.aggregate([
-      {
-        $match: {
-          username: { $in: req.query.accounts.split(',') },
-        },
-      },
-      { $sort: { username: 1 } },
-    ]);
+  if (!req.query.accounts) {
+    quotes = Quotes.find();
     quotes.limit(+req.query.results);
     quotes = await quotes;
+    res.status(200).json({
+      status: 'success',
+      data: {
+        quotes,
+      },
+    });
+  }
+  quotes = Quotes.aggregate([
+    {
+      $match: {
+        username: { $in: req.query.accounts.split(',') },
+      },
+    },
+    { $sort: { username: 1 } },
+  ]);
+  quotes.limit(+req.query.results);
+  quotes = await quotes;
 
-    if (!Array.isArray(quotes)) {
-      return next(new AppError('Something went very wrong!', 500));
-    }
-  } else {
-    quotes = [];
+  if (!Array.isArray(quotes)) {
+    return next(new AppError('Something went very wrong!', 500));
   }
 
   if (quotes.length < +req.query.results) {
