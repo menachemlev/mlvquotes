@@ -17,7 +17,7 @@ export function isItMobile() {
 export function sortQuote(quoteA, quoteB) {
   if (!localStorage) return 0;
   const accountsFollowed = JSON.parse(localStorage.getItem("accountsFollowed"));
-  if (accountsFollowed.length === 0) return 0;
+  if (!accountsFollowed || accountsFollowed?.length === 0) return 0;
   const indexA = accountsFollowed.indexOf(quoteA.username);
   const indexB = accountsFollowed.indexOf(quoteB.username);
   if (indexA === -1 && indexB === -1) return 0;
