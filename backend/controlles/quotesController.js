@@ -140,12 +140,12 @@ exports.addComment = catchAsync(async (req, res, next) => {
   }
   quote.comments.unshift(req.body.comment);
   await quote.save();
+
   res.status(201).json({
     status: 'success',
     data: quote,
   });
 });
-
 exports.getAllUserQuotes = catchAsync(async (req, res, next) => {
   const quotes = await Quotes.aggregate([
     {

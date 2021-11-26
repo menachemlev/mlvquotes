@@ -16,7 +16,6 @@ export default function AddComment({ id }) {
     e.preventDefault();
     const comment = textRef.current.value;
     if (!comment) return;
-
     fetch(`${authCtx.fetchProviderURL}/quotes/comment`, {
       method: "POST",
       body: JSON.stringify({

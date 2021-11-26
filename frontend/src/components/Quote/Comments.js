@@ -5,7 +5,6 @@ import { useEffect } from "react";
 
 export default function Comments({ id }) {
   const quotesContext = useContext(QuotesContext);
-
   return (
     <div
       style={{
@@ -17,7 +16,7 @@ export default function Comments({ id }) {
       }}
     >
       {(
-        quotesContext.quotes.find((quote) => quote.id === id)?.comments || []
+        quotesContext.quotes.find((quote) => quote._id === id)?.comments || []
       ).map((comment) => (
         <div key={Math.random() * 1000000} className="comment-container">
           {comment}
