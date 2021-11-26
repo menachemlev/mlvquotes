@@ -6,6 +6,7 @@ const router = express.Router();
 router.post('/', controller.addQuote);
 router.get('/', controller.getQuotes);
 router.get('/user', controller.getAllUserQuotes);
+router.get('/quote/:id', controller.getSingleQuote);
 router.post('/like', controller.addLike);
 router.post('/dislike', controller.addDislike);
 router.post('/removelike', controller.removeLike);

@@ -76,6 +76,17 @@ exports.getQuotes = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getSingleQuote = catchAsync(async (req, res, next) => {
+  const quote = await Quotes.findById(req.params.id);
+  if (!quote) {
+    return next(new AppError('Quote not found!', 404));
+  }
+  res.status(200).json({
+    status: 'success',
+    data: { quote },
+  });
+});
+
 exports.addLike = catchAsync(async (req, res, next) => {
   const quote = await Quotes.findById(req.body.id);
   if (!quote) {

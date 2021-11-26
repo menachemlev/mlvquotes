@@ -4,16 +4,27 @@ import AddComment from "../components/Quote/AddComment";
 import Comments from "../components/Quote/Comments";
 import "./Quote.css";
 import QuotesContext from "../Auth/QuotesContext";
+import Auth from "../Auth/Auth";
 
 export default function Quote(props) {
-  const quotesCtx = useContext(QuotesContext);
-  const [currentQuote, setCurrentQuote] = useState(
-    quotesCtx.quotes.find((quote) => quote.id === id)
-  );
+  const authCtx = useContext(Auth);
+  const [currentQuote, setCurrentQuote] = useState({});
   useEffect(() => {
-    setInterval(() => {
-      setCurrentQuote(quotesCtx.quotes.find((quote) => quote.id === id));
-    }, 1000);
+    //I FETCH THE CURRENT QUOTE FOR RANDOM ACCESS CASE(NOT THROUGH HOMEPAGE)
+    const fetchQuote = () => {
+      fetch(`${authCtx.fetchProviderURL}/quotes/quote/${id}`)
+        .then((res) => {
+          if (!res) throw new Error("Something went very wrong!");
+          return res.json();
+        })
+        .then((res) => {
+          if (res.status === "failed") throw new Error(res.message);
+          setCurrentQuote(res.data.quote);
+        })
+        .catch((err) => console.error(err));
+    };
+    fetchQuote();
+    setInterval(fetchQuote, 1000);
   }, []);
   const { id } = useParams();
   const username = currentQuote?.username;
