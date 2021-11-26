@@ -28,46 +28,40 @@ exports.getQuotes = catchAsync(async (req, res, next) => {
     quotes = Quotes.find();
     quotes.limit(+req.query.results);
     quotes = await quotes;
-    res.status(200).json({
-      status: 'success',
-      data: {
-        quotes,
-      },
-    });
-  }
-  quotes = Quotes.aggregate([
-    {
-      $match: {
-        username: { $in: req.query.accounts.split(',') },
-      },
-    },
-    { $sort: { username: 1 } },
-  ]);
-  quotes.limit(+req.query.results);
-  quotes = await quotes;
-
-  if (!Array.isArray(quotes)) {
-    return next(new AppError('Something went very wrong!', 500));
-  }
-
-  if (quotes.length < +req.query.results) {
-    restOfQuotes = Quotes.aggregate([
+  } else {
+    quotes = Quotes.aggregate([
       {
         $match: {
-          username: { $nin: req.query.accounts.split(',') },
+          username: { $in: req.query.accounts.split(',') },
         },
       },
       { $sort: { username: 1 } },
     ]);
-    restOfQuotes.limit(+req.query.results - quotes.length);
-    restOfQuotes = await restOfQuotes;
-    if (!Array.isArray(restOfQuotes)) {
+    quotes.limit(+req.query.results);
+    quotes = await quotes;
+
+    if (!Array.isArray(quotes)) {
       return next(new AppError('Something went very wrong!', 500));
     }
+
+    if (quotes.length < +req.query.results) {
+      restOfQuotes = Quotes.aggregate([
+        {
+          $match: {
+            username: { $nin: req.query.accounts.split(',') },
+          },
+        },
+        { $sort: { username: 1 } },
+      ]);
+      restOfQuotes.limit(+req.query.results - quotes.length);
+      restOfQuotes = await restOfQuotes;
+      if (!Array.isArray(restOfQuotes)) {
+        return next(new AppError('Something went very wrong!', 500));
+      }
+    }
+
+    quotes = [...quotes, ...restOfQuotes];
   }
-
-  quotes = [...quotes, ...restOfQuotes];
-
   res.status(200).json({
     status: 'success',
     data: {
